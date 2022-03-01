@@ -41,7 +41,9 @@ pipeline {
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: "${params.nexus_credential}", usernameVariable: 'TWINE_USERNAME', passwordVariable: 'TWINE_PASSWORD')]) {
-                    sh 'make release'
+                    echo "${TWINE_REPOSITORY_URL}"
+                    echo "${TWINE_USERNAME}"
+                    echo "${TWINE_PASSWORD}"
                 }
             }
         }
