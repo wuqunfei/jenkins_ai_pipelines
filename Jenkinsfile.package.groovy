@@ -12,24 +12,31 @@ pipeline {
                 echo "Checkout source code done ${source_code_repository_url}"
             }
         }
-        stage('Lint'){
+        stage('install'){
             steps{
-                echo 'Lint done'
+                sh 'make clean'
+                sh 'make install'
+            }
+        }
+        stage('lint'){
+            steps{
+                sh 'make lint'
             }
         }
         stage('Test'){
             steps{
-                echo 'Test done'
+                echo 'make test'
+                echo 'make coverage'
             }
         }
         stage('build'){
             steps{
-                echo 'Test done'
+                echo 'make dist'
             }
         }
         stage('release'){
             steps{
-                echo 'Release done'
+                echo 'make release'
             }
         }
     }
