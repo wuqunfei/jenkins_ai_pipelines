@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Checkout'){
             steps{
-                git branch: "${params.source_code_branch}", credentialsId: "${github_token}", url: "${params.source_code_repository_url}"
+                git branch: "${params.source_code_branch}", credentialsId: "${params.github_token}", url: "${params.source_code_repository_url}"
                 echo "Checkout source code done ${source_code_repository_url}"
             }
         }

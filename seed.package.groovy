@@ -16,6 +16,7 @@ pipelineJob("ocr package builder") {
     parameters {
         stringParam("source_code_repository_url", source_code_repository_url, "Source Code HTTP URL")
         stringParam("source_code_branch", source_code_branch, "Source Code Branch, default master")
+        stringParam('github_token', github_token, 'Github token credential id')
 
         stringParam("pipeline_github_repository", pipeline_github_repository, "pipeline github project name")
         stringParam("pipeline_jenkins_file", pipeline_jenkins_file, 'pipeline file')
