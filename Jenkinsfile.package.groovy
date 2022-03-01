@@ -1,4 +1,4 @@
-pipeline('ocr-package-builder') {
+pipeline('ocr-package-builder'){
     agent any
     stages{
         stage('Condition'){
