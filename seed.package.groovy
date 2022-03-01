@@ -5,7 +5,7 @@ String pipeline_github_repository = "wuqunfei/jenkins_ai_pipelines"
 String pipeline_jenkins_file = "Jenkinsfile.package.groovy"
 
 String source_code_repository_url = "https://github.com/wuqunfei/ocr_package"
-String source_code_branch = "master"
+String source_code_branch = "main"
 
 String nexus_py_repository_url = "http://localhost:8081/repository/pyrepo/"
 
