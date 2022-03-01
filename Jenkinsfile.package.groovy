@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages{
-        stage('Preconditions'){
+        stage('Condition'){
             steps{
                 echo 'Nexus setting up is done'
             }
