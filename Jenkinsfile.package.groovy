@@ -44,6 +44,11 @@ pipeline {
                     echo "${TWINE_REPOSITORY_URL}"
                     echo "${TWINE_USERNAME}"
                     sh 'make release'
+                    sh 'make clean'
+
+                }
+                withCredentials([usernamePassword(credentialsId: "${params.github_token}", usernameVariable: 'GIT_TOKEN')]) {
+                    sh('git push https://${GIT_TOKEN}@github.com/my-org/my-repo.git')
                 }
             }
         }
