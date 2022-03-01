@@ -34,7 +34,7 @@ pipeline {
                 sh 'make dist'
             }
         }
-//        Setting nexus information into environment, twine can upload artifacts
+//     Set up the environment for twine upload artifacts, please read https://twine.readthedocs.io/en/stable/
         stage('release package') {
             environment {
                 TWINE_REPOSITORY_URL = "${params.nexus_py_repository_url}"
