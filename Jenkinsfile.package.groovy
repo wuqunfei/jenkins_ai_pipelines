@@ -37,7 +37,7 @@ pipeline {
 //        Setting nexus information into environment, twine can upload artifacts
         stage('release package') {
             environment {
-                TWINE_REPOSITORY_URL = params.nexus_py_repository_url
+                TWINE_REPOSITORY_URL = "${params.nexus_py_repository_url}"
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: "${params.nexus_credential}", usernameVariable: 'TWINE_USERNAME', passwordVariable: 'TWINE_PASSWORD')]) {
