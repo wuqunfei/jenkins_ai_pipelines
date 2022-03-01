@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Checkout'){
             steps{
-                echo 'Checkout source code done ${source_code_repository_url}'
+                echo "Checkout source code done ${source_code_repository_url}"
             }
         }
         stage('Lint'){
