@@ -14,6 +14,7 @@ pipeline {
         }
         stage('install packages'){
             steps{
+                sh 'conda active py38'
                 sh 'make clean'
                 sh 'make install'
             }
