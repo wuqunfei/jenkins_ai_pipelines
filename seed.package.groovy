@@ -12,7 +12,7 @@ String nexus_py_repository_url = "http://localhost:8081/repository/pyrepo/"
 String nexus_user = "admin"
 String nexus_pwd = "admin"
 
-pipelineJob("ocr package builder") {
+pipelineJob("ocr-package-seed") {
     parameters {
         stringParam("source_code_repository_url", source_code_repository_url, "Source Code HTTP URL")
         stringParam("source_code_branch", source_code_branch, "Source Code Branch, default master")
