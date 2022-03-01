@@ -15,7 +15,7 @@ pipeline {
         stage('install packages') {
             steps {
                 sh 'make clean'
-                sh 'make install'
+                sh 'pip install -r requirements.txt'
             }
         }
         stage('Python lint') {
