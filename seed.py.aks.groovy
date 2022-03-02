@@ -14,6 +14,9 @@ String source_code_branch = "main"
 String deploy_code_repository_url = "https://github.com/wuqunfei/jenkins_ai_deployment"
 String deploy_code_branch = "main"
 
+
+
+
 pipelineJob("ocr-service-builder") {
     parameters {
         stringParam("source_code_repository_url", source_code_repository_url, "Application Source Code HTTP URL")
@@ -25,6 +28,13 @@ pipelineJob("ocr-service-builder") {
 
         stringParam("deploy_code_repository_url", deploy_code_repository_url, "Helm/K8S deployment repository")
         stringParam("deploy_code_branch", deploy_code_branch, "main")
+
+
+        stringParam("acr_name", acr_name, "Azure Container Registry name")
+        stringParam("acr_credential", acr_credential, "Azure Container credential id in jenkins user/pwd")
+
+
+
 
     }
     definition {
