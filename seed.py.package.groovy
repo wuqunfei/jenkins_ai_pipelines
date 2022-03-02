@@ -4,7 +4,7 @@ String github_host = "github.com"
 
 //central pipeline repository
 String pipeline_github_repository = "wuqunfei/jenkins_ai_pipelines"
-String pipeline_jenkins_file = "Jenkinsfile.package.groovy"
+String pipeline_jenkins_file = "Jenkinsfile.py.package.groovy"
 
 //package source code
 String source_code_repository_url = "https://github.com/wuqunfei/ocr_package"
