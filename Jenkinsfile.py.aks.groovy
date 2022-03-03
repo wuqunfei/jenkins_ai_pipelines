@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    enviroment {
+    environment {
         def dockerImage
     }
     stages {
