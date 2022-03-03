@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-
-    }
     stages {
         stage('Checkout Source Code and Deployment Code') {
             steps {
@@ -12,7 +9,6 @@ pipeline {
 
                 git branch: "${params.source_code_branch}", credentialsId: "${params.github_token}", url: "${params.source_code_repository_url}"
                 echo "Checkout source code done ${source_code_repository_url}"
-
 
             }
         }
@@ -28,11 +24,20 @@ pipeline {
         }
         stage("Docker Build"){
             steps{
-                echo "docker build done "
+                script {
+                    def dockerImage = docker.build("${params.application_name}:${env.BUILD_ID}")
+                }
+                echo "docker build done"
             }
         }
         stage("Docker Publish ACR"){
             steps{
+                script{
+                    def docker_register_url =  "http://${params.acr_name}.azurecr.io"
+                    docker.withRegistry( docker_register_url, "${params.acr_credential}" ) {
+                        dockerImage.push("latest")
+                    }
+                }
                 echo "docker push done"
             }
         }

@@ -18,12 +18,15 @@ String deploy_code_branch = "main"
 String acr_name = "prodaidevopsazverpjq"
 String acr_credential = "acr_credential"
 
+//Application
+String application_name = "pysimple"
 
 pipelineJob("ocr-service-builder") {
     parameters {
 
         stringParam('github_token_credential', github_token_credential, 'Github token credential id')
 
+        stringParam("application_name", application_name, "application_name for docker image")
         stringParam("source_code_repository_url", source_code_repository_url, "Application Source Code HTTP URL")
         stringParam("source_code_branch", source_code_branch, "Application Source Code Branch, default main")
 
