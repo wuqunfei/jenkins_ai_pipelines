@@ -14,9 +14,11 @@ String source_code_branch = "main"
 String deploy_code_repository_url = "https://github.com/wuqunfei/jenkins_ai_deployment"
 String deploy_code_branch = "main"
 
-//ACR
+//Azure ACR and AKS
 String acr_name = "prodaidevopsazverpjq"
 String acr_credential = "acr_credential"
+String aks_kubeconfig_file_credential = "k8s"
+
 
 //Application
 String application_name = "pysimple"
@@ -40,8 +42,8 @@ pipelineJob("ocr-service-builder") {
 
 
         stringParam("acr_name", acr_name, "Azure Container Registry name for docker image")
-        stringParam("acr_credential", acr_credential, "Azure Container credential id in jenkins user/pwd")
-
+        stringParam("acr_credential", acr_credential, "Azure Container credential(user/pwd) id in jenkins ")
+        stringParam("aks_kubeconfig_file_credential",aks_kubeconfig_file_credential, "Azure AKS kubeconfig file credential id in Jenkins" )
 
     }
     definition {
