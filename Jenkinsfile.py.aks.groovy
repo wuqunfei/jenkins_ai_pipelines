@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    enviroment {
+        def dockerImage
+    }
     stages {
         stage('Checkout Source Code and Deployment Code') {
             steps {
@@ -25,7 +28,7 @@ pipeline {
         stage("Docker Build"){
             steps{
                 script {
-                    def dockerImage = docker.build("${params.application_name}:${env.BUILD_ID}")
+                    dockerImage = docker.build("${params.application_name}:${env.BUILD_ID}")
                 }
                 echo "docker build done"
             }
@@ -33,7 +36,7 @@ pipeline {
         stage("Docker Publish ACR"){
             steps{
                 script{
-                    def docker_register_url =  "https://${params.acr_name}.azurecr.io"
+                    docker_register_url =  "https://${params.acr_name}.azurecr.io"
                     docker.withRegistry( docker_register_url, "${params.acr_credential}" ) {
                         dockerImage.push("latest")
                     }
