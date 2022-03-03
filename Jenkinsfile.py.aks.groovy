@@ -38,7 +38,10 @@ pipeline {
         }
         stage("Kubernetes Deploy"){
             steps{
-                echo "K8S deploy done"
+                withCredentials([kubeconfigContent(credentialsId: 'k8s', variable: 'KUBECONFIG_FILE')]) {
+                    echo "$KUBECONFIG_FILE"
+                    echo "K8s deploy is done"
+                }
             }
         }
         stage("Service Health Check"){
