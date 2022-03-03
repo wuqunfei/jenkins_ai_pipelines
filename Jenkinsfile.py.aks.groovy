@@ -44,8 +44,9 @@ pipeline {
         stage("Kubernetes Deploy"){
             steps{
                 withCredentials([kubeconfigContent(credentialsId: 'k8s', variable: 'kubeconfig_file')]) {
-                    dir ("~/.kube")
-                    sh "echo $kubeconfig_file >> ~/.kube/config"
+                    dir ('~/.kube') {
+                        writeFile file:'config', text: "$kubeconfig_file"
+                    }
                     sh 'cat ~/.kube/config'
                     echo "K8s deploy is done"
                 }
