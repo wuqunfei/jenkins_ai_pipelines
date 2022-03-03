@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        def dockerImage
-    }
     stages {
         stage('Checkout Source Code and Deployment Code') {
             steps {
