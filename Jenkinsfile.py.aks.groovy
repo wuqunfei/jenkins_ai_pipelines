@@ -48,6 +48,7 @@ pipeline {
                         writeFile file:'config', text: "$kubeconfig_file"
                     }
                     sh 'cat ~/.kube/config'
+                    sh 'helm'
                     echo "K8s deploy is done"
                 }
             }
