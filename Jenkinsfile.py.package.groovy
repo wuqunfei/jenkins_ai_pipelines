@@ -47,10 +47,10 @@ pipeline {
                     sh 'make clean'
 
                 }
-//                TODO: need to fix with Infra team
-//                withCredentials([usernamePassword(credentialsId: "${params.github_token}", usernameVariable: 'GIT_TOKEN')]) {
+                withCredentials([usernamePassword(credentialsId: "${params.github_token}", passwordVariable: 'GIT_TOKEN')]) {
+                    echo "${GIT_TOKEN}"
 //                    sh('git push https://${GIT_TOKEN}@github.com/my-org/my-repo.git')
-//                }
+                }
             }
         }
     }
