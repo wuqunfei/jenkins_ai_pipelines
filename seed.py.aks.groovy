@@ -22,6 +22,7 @@ String aks_kubeconfig_file_credential = "k8s"
 
 //Application
 String application_name = "pysimple"
+String application_namespace = "customer-test"
 
 pipelineJob("ocr-service-builder") {
     parameters {
@@ -29,6 +30,8 @@ pipelineJob("ocr-service-builder") {
         stringParam('github_token_credential', github_token_credential, 'Github token credential id')
 
         stringParam("application_name", application_name, "application_name for docker image")
+        stringParam("application_namespace", application_namespace, "application namespace to deploy")
+
         stringParam("source_code_repository_url", source_code_repository_url, "Application Source Code HTTP URL")
         stringParam("source_code_branch", source_code_branch, "Application Source Code Branch, default main")
 
