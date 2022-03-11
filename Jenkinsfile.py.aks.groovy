@@ -44,7 +44,7 @@ pipeline {
         }
         stage("Kubernetes Deploy"){
             steps{
-                withCredentials([kubeconfigContent(credentialsId: ${params.aks_kubeconfig_file_credential}, variable: 'kubeconfig_file')]) {
+                withCredentials([kubeconfigContent(credentialsId: "${params.aks_kubeconfig_file_credential}", variable: 'kubeconfig_file')]) {
                     dir ('~/.kube') {
                         writeFile file:'config', text: "${kubeconfig_file}"
                     }
