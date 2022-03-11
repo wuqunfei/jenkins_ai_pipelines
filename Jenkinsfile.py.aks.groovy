@@ -46,7 +46,7 @@ pipeline {
             steps{
                 withCredentials([kubeconfigContent(credentialsId: "${params.aks_kubeconfig_file_credential}", variable: 'kubeconfig_file')]) {
                     dir ('~/.kube') {
-                        writeFile file:'config', text: "${kubeconfig_file}"
+                        writeFile file:'config', text: "$kubeconfig_file"
                     }
                     sh "cat ~/.kube/config"
 //                    sh "kubectl version"
