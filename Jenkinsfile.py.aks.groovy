@@ -47,6 +47,9 @@ pipeline {
                 withCredentials([kubeconfigContent(credentialsId: "${params.aks_kubeconfig_file_credential}", variable: 'kubeconfig_file')]) {
                     dir('~/.kube') {
                         writeFile file: 'config', text: "$kubeconfig_file"
+
+                    }
+                    dir('~/') {
                         sh "kubectl version"
                         sh "helm version"
                         sh "helm upgrade -- install ${params.application_name} ./helm -n ${params.application_namespace} " +
