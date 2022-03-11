@@ -15,9 +15,10 @@ String deploy_code_repository_url = "https://github.com/wuqunfei/jenkins_ai_depl
 String deploy_code_branch = "main"
 
 //Azure ACR and AKS
-String acr_name = "prodaidevopsazverpjq"
-String acr_credential = "acr_credential"
-String aks_kubeconfig_file_credential = "k8s"
+String acr_name = "proddstraining62so"
+String acr_credential = "h10.training.acr"
+String aks_kubeconfig_file_credential = "h10.training.aks"
+String subscription_zone = "gdp-09.we1.azure.aztec.cloud.allianz"
 
 
 //Application
@@ -47,7 +48,7 @@ pipelineJob("ocr-service-builder") {
         stringParam("acr_name", acr_name, "Azure Container Registry name for docker image")
         stringParam("acr_credential", acr_credential, "Azure Container credential(user/pwd) id in jenkins ")
         stringParam("aks_kubeconfig_file_credential",aks_kubeconfig_file_credential, "Azure AKS kubeconfig file credential id in Jenkins" )
-
+        stringParam("subscription_zone", subscription_zone, "Azure Subscription Zone for DNS")
     }
     definition {
         cpsScm {
