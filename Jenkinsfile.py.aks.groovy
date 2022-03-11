@@ -49,13 +49,13 @@ pipeline {
                         writeFile file:'config', text: "${kubeconfig_file}"
                     }
                     sh "cat ~/.kube/config"
-                    sh "kubectl version"
-                    sh "helm version"
-                    sh "helm upgrade -- install ${params.application_name} ./helm -n ${params.application_namespace} " +
-                            "set image.repository=${params.acr_name}.azurecr.io/${params.application_name} "+
-                            "set image.tag= ${env.BUILD_ID}" +
-                            "set ingress.enable=true" +
-                            "set ingress.hostname=${params.application_name}.${params.subscription_zone}"
+//                    sh "kubectl version"
+//                    sh "helm version"
+//                    sh "helm upgrade -- install ${params.application_name} ./helm -n ${params.application_namespace} " +
+//                            "set image.repository=${params.acr_name}.azurecr.io/${params.application_name} "+
+//                            "set image.tag= ${env.BUILD_ID}" +
+//                            "set ingress.enable=true" +
+//                            "set ingress.hostname=${params.application_name}.${params.subscription_zone}"
                     echo "K8s deploy is done"
                 }
             }
