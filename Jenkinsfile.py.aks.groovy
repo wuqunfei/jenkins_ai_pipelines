@@ -48,7 +48,6 @@ pipeline {
                     dir ('~/.kube') {
                         writeFile file:'config', text: "$kubeconfig_file"
                     }
-                    sh "cat ~/.kube/config"
                     sh "kubectl version"
                     sh "helm version"
                     sh "helm upgrade -- install ${params.application_name} ./helm -n ${params.application_namespace} " +
