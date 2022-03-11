@@ -33,7 +33,8 @@ pipeline {
         stage("Docker Publish ACR"){
             steps{
                 script{
-                    docker_register_url =  "https://${params.acr_name}.azurecr.io"docker.withRegistry( docker_register_url, "${params.acr_credential}" ) {
+                    docker_register_url =  "https://${params.acr_name}.azurecr.io"
+                    docker.withRegistry( docker_register_url, "${params.acr_credential}" ) {
                         dockerImage.push("${env.BUILD_ID}")
                         dockerImage.push("latest")
                     }
