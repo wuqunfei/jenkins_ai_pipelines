@@ -50,7 +50,7 @@ pipeline {
 
                     }
                     dir('~/') {
-                        def helm_cmd =  "helm --kubeconfig  ~/.kube/config " +
+                        String helm_cmd =  "helm --kubeconfig  ~/.kube/config " +
                                 "upgrade --install ${params.application_name} ./helm -n ${params.application_namespace} " +
                                 "--set image.repository=${params.acr_name}.azurecr.io/${params.application_name} " +
                                 "--set image.tag=${env.BUILD_ID} " +
