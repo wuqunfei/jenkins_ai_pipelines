@@ -49,7 +49,7 @@ pipeline {
                         writeFile file: 'config', text: "$kubeconfig_file"
                     }
                     dir('~/') {
-                        echo "helm upgrade --install ${params.application_name} ./helm " +
+                        sh "helm upgrade --install ${params.application_name} ./helm " +
                                 "--set nameOverride=${params.application_name} " +
                                 "--set image.repository=${params.acr_name}.azurecr.io/${params.application_name} " +
                                 "--set image.tag=${env.BUILD_ID} " +
