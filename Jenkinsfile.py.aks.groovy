@@ -50,14 +50,15 @@ pipeline {
 
                     }
                     dir('~/') {
-                        echo "helm --kubeconfig  ~/.kube/config " +
-                                "upgrade --install ${params.application_name} ./helm -n ${params.application_namespace} " +
+                        echo "helm upgrade --install ${params.application_name} ./helm " +
                                 "--set image.repository=${params.acr_name}.azurecr.io/${params.application_name} " +
                                 "--set image.tag=${env.BUILD_ID} " +
-                                "set ingress.enable=true " +
+                                "--set ingress.enable=true " +
                                 "--set \"ingress.hosts[0].host=${params.application_name}.${params.subscription_zone}," +
                                 "ingress.hosts[0].paths[0].path=/," +
-                                "ingress.hosts[0].paths[0].pathType=ImplementationSpecific\""
+                                "ingress.hosts[0].paths[0].pathType=ImplementationSpecific\"" +
+                                "--namespace ${params.application_namespace} " +
+                                "--kubeconfig ~/.kube/config"
                     }
                     echo "K8s deploy is done"
                 }
