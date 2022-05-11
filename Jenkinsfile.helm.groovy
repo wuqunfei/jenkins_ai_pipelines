@@ -30,7 +30,7 @@ pipeline {
             }
             steps {
                 echo "helm is pushing to helm repository:"
-                sh "helm push ${parames.helm_char_name}-${tag}.tgz oci://${parames.helm_repository} --kubeconfig ${KUBE_CONFIG_PATH}"
+                sh "helm push ${parames.helm_chart_name}-${tag}.tgz oci://${parames.helm_repository} --kubeconfig ${KUBE_CONFIG_PATH}"
                 echo "helm pushed new version ${tag}"
             }
         }
