@@ -20,15 +20,17 @@ pipeline {
         stage('helm package') {
             steps {
                 sh "helm lint ${params.helm_package_folder}"
-                sh "helm package ${params.helm_package_folder} --version ${GIT_TAG}"
+                sh "helm package ${params.helm_package_folder}"
             }
         }
         stage('helm push') {
+            when { tag "release-*" }
             steps {
-                echo "helm is pushing version:${GIT_TAG} @ helm repository: ${parames.helm_repository}"
+                echo "helm is pushing to helm repository: ${parames.helm_repository}"
                 //sh "helm push ${params.helm_package_folder}/$GIT_COMMIT.take(7)/tgz.oci oci://${parames.helm_repository} --kubeconfig ${KUBE_CONFIG_PATH}"
-                echo "helm pushed new version ${GIT_TAG}"
+                echo "helm pushed new version ${tag}"
             }
         }
     }
 }
+// https://plugins.jenkins.io/git-tag-message/
