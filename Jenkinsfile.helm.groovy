@@ -2,13 +2,9 @@ pipeline {
     environment {
         KEYVAULT = 'ai-devops-azverpjq'
         KUBE_CONFIG_PATH = './kubeconfig'
-
+        HELM_EXPERIMENTAL_OCI = 1
     }
-    agent {
-        node {
-            label 'tools'
-        }
-    }
+    agent any
     stages {
         stage('Checkout Helm Code') {
             steps {
@@ -34,19 +30,15 @@ pipeline {
         }
         stage('helm package') {
             steps {
-                sh "heml lint ${params.helm_packag}"
-                sh "helm package ${params.helm_packag} --version $GIT_COMMIT.take(7) --kubeconfig ${KUBE_CONFIG_PATH}"
+                sh "heml lint ${params.helm_package_folder}"
+                sh "helm package ${params.helm_package_folder} --version ${GIT_COMMIT.take(7)} --kubeconfig ${KUBE_CONFIG_PATH}"
             }
         }
         stage('helm push') {
             steps {
-//                scripts {
-//                    env.HELM_EXPERIMENTAL_OCI = 1
-//                    env.HELM_REPOSITORY = ACR_NAME + ".azurecr.io/helm"
-//                }
-//                echo "helm is pushing version:$GIT_COMMIT.take(7) @ helm repository: ${HELM_REPOSITORY}"
-//                sh "helm push ${params.helm_packag}/$GIT_COMMIT.take(7)/tgz.oci oci://${HELM_REPOSITORY} --kubeconfig ${KUBE_CONFIG_PATH}"
-                echo "helm pushed new version $GIT_COMMIT.take(7)"
+                echo "helm is pushing version:${GIT_COMMIT.take(7)} @ helm repository: ${parames.helm_repository}"
+                sh "helm push ${params.helm_package_folder}/$GIT_COMMIT.take(7)/tgz.oci oci://${parames.helm_repository} --kubeconfig ${KUBE_CONFIG_PATH}"
+                echo "helm pushed new version ${GIT_COMMIT.take(7)}"
             }
         }
     }
