@@ -19,7 +19,7 @@ pipeline {
         }
         stage('helm package') {
             steps {
-                sh "heml lint ${params.helm_package_folder}"
+                sh "helm lint ${params.helm_package_folder}"
                 sh "helm package ${params.helm_package_folder} --version ${GIT_COMMIT.take(7)}"
             }
         }
