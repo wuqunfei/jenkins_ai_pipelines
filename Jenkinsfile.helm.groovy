@@ -15,7 +15,6 @@ pipeline {
         stage('helm config and login by cloud') {
             steps {
                 sh "helm version"
-                }
             }
         }
         stage('helm package') {
