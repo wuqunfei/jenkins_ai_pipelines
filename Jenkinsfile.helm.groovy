@@ -29,9 +29,9 @@ pipeline {
 //                 tag = gitTagName()
 //             }
             steps {
-                echo "helm is pushing to helm repository: ${parames.helm_register_server}"
+                echo "helm is pushing to helm repository: ${parames.source_code_branch}"
                 //sh "helm push ${params.helm_package_folder}/$GIT_COMMIT.take(7)/tgz.oci oci://${parames.helm_repository} --kubeconfig ${KUBE_CONFIG_PATH}"
-                echo "helm pushed new version ${tag}"
+//                 echo "helm pushed new version ${tag}"
             }
         }
     }
